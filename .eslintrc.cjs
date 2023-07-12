@@ -24,5 +24,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off'
   },
 }
