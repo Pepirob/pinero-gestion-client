@@ -8,23 +8,16 @@ interface AuthContextType {
   loggedUser: User | null
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
-const AuthWrapper = (props: React.PropsWithChildren<object>) => {
-  const { authenticateUser, isLoggedIn, loggedUser } =
-    useAuthenticateUser()
-
-  const contextValue: AuthContextType = {
-    authenticateUser,
-    isLoggedIn,
-    loggedUser
-  }
-
+const AuthProvider = ({ children }: any) => {
+  const { authenticateUser, isLoggedIn, loggedUser } = useAuthenticateUser()
+  console.log(isLoggedIn)
   return (
-    <AuthContext.Provider value={contextValue}>
-      {props.children}
+    <AuthContext.Provider value={{ authenticateUser, isLoggedIn, loggedUser }}>
+      {children}
     </AuthContext.Provider>
   )
 }
 
-export { AuthContext, AuthWrapper }
+export { AuthContext, AuthProvider }

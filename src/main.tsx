@@ -1,13 +1,13 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { AuthWrapper } from './context/auth.context.tsx'
+import { AuthProvider } from './context/auth.context.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <AuthWrapper>
-    <React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
       <App />
-    </React.StrictMode>
-  </AuthWrapper>
+    </AuthProvider>
+  </BrowserRouter>
 )
