@@ -1,12 +1,12 @@
 import Board from '../components/Board'
 import { board } from '../components/BoardItem.css'
-import Toolbar from '../components/NavBar'
+import NavBar from '../components/NavBar'
 
 const Home = () => {
   return (
     <>
       <header>
-        <Toolbar />
+        <NavBar />
       </header>
 
       <main className={board}>

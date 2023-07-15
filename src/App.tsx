@@ -3,6 +3,7 @@ import './App.css'
 import LoginPage from './pages/LoginPage'
 import Home from './pages/Home'
 import IsPrivate from './hoc/IsPrivate'
+import ClientsPage from './pages/ClientsPage'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           }
         />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/clientes' element={<ClientsPage />} />
       </Routes>
     </>
   )
