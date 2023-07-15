@@ -6,11 +6,10 @@ export const useAuthenticateUser = () => {
   const [loggedUser, setLoggedUser] = useState(null)
   const [isFetching, setIsFetching] = useState(true)
 
-  const authenticateUser = async (): Promise<void> => {
+  const authenticateUser = async () => {
     setIsFetching(true)
     try {
-      const response = await verifyService()
-      console.log(response)
+      const response: any = await verifyService()
       setIsloggedIn(true)
       setLoggedUser(response.data)
       setIsFetching(false)

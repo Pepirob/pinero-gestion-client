@@ -5,7 +5,21 @@ export interface AuthData {
     exp: number
 }
 
-type User = {
+export type User = {
     _id: string,
     email: string,
+}
+
+export interface ResponseAuthToken {
+    authToken: string
+}
+
+export interface BoardItemProps {
+    src: string
+    title: string
+}
+
+export interface NavItemProps {
+    path: string,
+    children: React.ReactNode
 }
