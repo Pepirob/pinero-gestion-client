@@ -1,9 +1,13 @@
-import { useId, useContext, useState } from 'react'
+import { useId, useContext, useState, MouseEvent } from 'react'
 import { AuthContext } from '../context/auth.context'
 import { useIsFetching } from '../hooks/useIsFetching'
 import { useErrorMessage } from '../hooks/useErrorMessage'
+import { loginService } from '../services/auth.services'
+import { NavigateFunction, useNavigate } from 'react-router'
+import { loginMain } from './Login.css'
 
 const LoginForm = () => {
+  const redirect: NavigateFunction = useNavigate()
   const emailId = useId()
   const passwordId = useId()
   const { authenticateUser } = useContext(AuthContext)
@@ -19,9 +23,36 @@ const LoginForm = () => {
       setPassword(e.target.value)
     }
   }
+
+  const handleLogin = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    try {
+      setIsFetching(true)
+      const response = await loginService({ identifier, password })
+      const {
+        data: { authToken },
+      }: { data: { authToken: string } } = response
+
+      localStorage.setItem('authToken', authToken)
+
+      authenticateUser()
+      setIsFetching(false)
+      redirect('/')
+    } catch (error) {
+      setIsFetching(false)
+
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
+        redirect('/error')
+      }
+    }
+  }
+
   return (
-    <>
-      <form action=''>
+    <main className={loginMain}>
+      <form>
         <label htmlFor={emailId}>Correo Electrónico: </label>
         <input
           id={emailId}
@@ -40,9 +71,13 @@ const LoginForm = () => {
           onChange={handleInput}
         />
         <br />
-        <button>Acceder</button>
+        {errorMessage.length ? <p>{errorMessage}</p> : null}
+        <br />
+        <button disabled={isFetching} onClick={handleLogin}>
+          Acceder
+        </button>
       </form>
-    </>
+    </main>
   )
 }
 
