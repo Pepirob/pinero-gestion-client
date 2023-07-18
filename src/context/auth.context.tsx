@@ -12,7 +12,6 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 const AuthProvider = ({ children }: any) => {
   const { authenticateUser, isLoggedIn, loggedUser } = useAuthenticateUser()
-  console.log(isLoggedIn)
   return (
     <AuthContext.Provider value={{ authenticateUser, isLoggedIn, loggedUser }}>
       {children}

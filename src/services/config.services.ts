@@ -7,7 +7,7 @@ const service: AxiosInstance = axios.create({
 })
 
 service.interceptors.request.use((config) => {
-  const storedToken: string = localStorage.getItem('authToken')
+  const storedToken = localStorage.getItem('authToken')
   const tokenAndType = `Bearer ${storedToken}`
 
   if (storedToken) {
