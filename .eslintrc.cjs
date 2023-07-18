@@ -29,6 +29,9 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'react/prop-types': 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    'comma-dangle': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
   },
 }

@@ -23,3 +23,5 @@ export interface NavItemProps {
     path: string,
     children: React.ReactNode
 }
+
+export type postalCode = `${number}${number}${number}${number}${number}${number}${number}${number}${string}`
